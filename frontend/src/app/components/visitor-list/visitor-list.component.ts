@@ -4,18 +4,35 @@ import { DemoFlexyModule } from 'src/app/demo-flexy-module';
 export interface PeriodicElement {
   id: number;
   name: string;
-  work: string;
-  project: string;
-  priority: string;
-  badge: string;
-  budget: string;
+  birthDate: string;
+  registerTimestamp: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { id: 1, name: 'Deep Javiya', work: 'Frontend Devloper', project: 'Flexy Angular', priority: 'Low', badge: 'badge-info', budget: '$3.9k' },
-  { id: 2, name: 'Nirav Joshi', work: 'Project Manager', project: 'Hosting Press HTML', priority: 'Medium', badge: 'badge-primary', budget: '$24.5k' },
-  { id: 3, name: 'Sunil Joshi', work: 'Web Designer', project: 'Elite Admin', priority: 'High', badge: 'badge-danger', budget: '$12.8k' },
-  { id: 4, name: 'Maruti Makwana', work: 'Backend Devloper', project: 'Material Pro', priority: 'Critical', badge: 'badge-success', budget: '$2.4k' },
+  {
+    id: 1,
+    name: 'Deep Javiya',
+    birthDate: '22-02-2022',
+    registerTimestamp: '22-02-2023 - 15.00',
+  },
+  {
+    id: 2,
+    name: 'Nirav Joshi',
+    birthDate: '22-02-2022',
+    registerTimestamp: '22-02-2023 - 15.00',
+  },
+  {
+    id: 3,
+    name: 'Sunil Joshi',
+    birthDate: '22-02-2022',
+    registerTimestamp: '22-02-2023 - 15.00',
+  },
+  {
+    id: 4,
+    name: 'Maruti Makwana',
+    birthDate: '22-02-2022',
+    registerTimestamp: '22-02-2023 - 15.00',
+  },
 ];
 
 @Component({
@@ -26,13 +43,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
   imports: [DemoFlexyModule],
 })
 export class VisitorListComponent implements OnInit {
-  
-  displayedColumns: string[] = ['id', 'assigned', 'name', 'priority', 'budget'];
+  displayedColumns: string[] = ['id', 'name', 'birthDate', 'registerTimestamp'];
   dataSource = ELEMENT_DATA;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
