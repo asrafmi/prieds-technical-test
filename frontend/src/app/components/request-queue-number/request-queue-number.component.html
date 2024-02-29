@@ -1,1 +1,19 @@
-<p>request-queue-number works!</p>
+<div class="card">
+  <div class="card-body">
+    <h4 class="mb-32">Cetak No. Antrian</h4>
+    <form>
+      <mat-form-field class="w-100 fs-16" appearance="outline">
+        <mat-label>Nama Lengkap</mat-label>
+        <input matInput type="text" placeholder="Nama Lengkap" />
+      </mat-form-field>
+
+      <button
+        mat-button
+        class="btn btn-info fw-normal"
+        (click)="handleClick($event)"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
