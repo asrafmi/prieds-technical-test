@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DemoFlexyModule } from 'src/app/demo-flexy-module';
+import { MaterialModule } from 'src/app/tools/material.module';
 import { DialogComponent } from './dialog/dialog.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RequestQueueNumberService } from './request-queue-number.service';
@@ -20,7 +20,7 @@ export interface DialogData {
   templateUrl: './request-queue-number.component.html',
   styleUrls: ['./request-queue-number.component.scss'],
   standalone: true,
-  imports: [DemoFlexyModule, ReactiveFormsModule],
+  imports: [MaterialModule, ReactiveFormsModule],
 })
 export class RequestQueueNumberComponent implements OnInit {
   constructor(

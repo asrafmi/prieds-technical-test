@@ -2,7 +2,7 @@ import { NgIf } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { QRCodeModule } from 'angularx-qrcode';
-import { DemoFlexyModule } from 'src/app/demo-flexy-module';
+import { MaterialModule } from 'src/app/tools/material.module';
 import { DialogService } from './dialog.service';
 import { DialogData } from '../request-queue-number.component';
 
@@ -17,7 +17,7 @@ export interface DialogDetailData {
   templateUrl: './dialog.component.html',
   standalone: true,
   styleUrls: ['./dialog.component.scss'],
-  imports: [MatDialogModule, NgIf, DemoFlexyModule, QRCodeModule],
+  imports: [MatDialogModule, NgIf, MaterialModule, QRCodeModule],
 })
 export class DialogComponent implements OnInit {
   dialogData = {} as DialogDetailData;

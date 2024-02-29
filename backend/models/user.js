@@ -37,7 +37,6 @@ const userSchema = new Schema(
     },
     alergy: {
       type: String,
-      required: true,
     },
     complaint: {
       type: String,

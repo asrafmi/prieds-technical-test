@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DemoFlexyModule } from 'src/app/demo-flexy-module';
+import { MaterialModule } from 'src/app/tools/material.module';
 import { VisitorListService } from './visitor-list.service';
 
 export interface VisitorListInterface {
@@ -14,7 +14,7 @@ export interface VisitorListInterface {
   templateUrl: './visitor-list.component.html',
   styleUrls: ['./visitor-list.component.scss'],
   standalone: true,
-  imports: [DemoFlexyModule],
+  imports: [MaterialModule],
 })
 export class VisitorListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'birthDate', 'registerTimestamp'];

@@ -6,6 +6,7 @@
       <mat-form-field class="w-100 fs-16" appearance="outline">
         <mat-label>Nama Lengkap</mat-label>
         <input
+          required
           formControlName="name"
           matInput
           type="text"
@@ -16,6 +17,7 @@
       <mat-form-field class="w-100 fs-16" appearance="outline">
         <mat-label>Email</mat-label>
         <input
+          required
           formControlName="email"
           matInput
           type="email"
@@ -26,6 +28,7 @@
       <mat-form-field class="w-100 fs-16" appearance="outline">
         <mat-label>No. HP</mat-label>
         <input
+          required
           formControlName="mobile"
           matInput
           type="number"
@@ -35,12 +38,23 @@
 
       <mat-form-field class="w-100 fs-16" appearance="outline">
         <mat-label>NIK</mat-label>
-        <input formControlName="nik" matInput type="number" placeholder="NIK" />
+        <input
+          required
+          formControlName="nik"
+          matInput
+          type="number"
+          placeholder="NIK"
+        />
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Tanggal Lahir</mat-label>
-        <input formControlName="birthdate" matInput [matDatepicker]="picker" />
+        <input
+          required
+          formControlName="birthdate"
+          matInput
+          [matDatepicker]="picker"
+        />
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle
           matIconSuffix
@@ -52,6 +66,7 @@
       <mat-form-field class="w-100 fs-16 mt-20" appearance="outline">
         <mat-label>Alamat</mat-label>
         <textarea
+          required
           formControlName="address"
           matInput
           rows="6"
@@ -63,12 +78,11 @@
         color="primary"
         class="fs-16"
         aria-label="Select an option"
+        required
         formControlName="gender"
       >
         <mat-label class="text-secondary">Gender</mat-label>
-        <mat-radio-button
-          value="female"
-          class="mt-8 mb-16 d-block"
+        <mat-radio-button value="female" class="mt-8 mb-16 d-block"
           >Female</mat-radio-button
         >
         <mat-radio-button value="male" class="d-block mb-16"
@@ -79,6 +93,7 @@
       <mat-form-field class="w-100 fs-16" appearance="outline">
         <mat-label>Riwayat Penyakit</mat-label>
         <textarea
+          required
           formControlName="diseaseHistory"
           matInput
           rows="6"
@@ -123,6 +138,7 @@
       <mat-form-field class="w-100 fs-16" appearance="outline">
         <mat-label>Keluhan</mat-label>
         <textarea
+          required
           formControlName="complaint"
           matInput
           rows="6"
