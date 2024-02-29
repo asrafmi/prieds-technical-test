@@ -21,7 +21,6 @@ class BadRequest extends CustomError {
 
 class InternalServerError extends CustomError {
   /**
-   *
    * @param {string} message
    */
   constructor(message) {
@@ -31,7 +30,6 @@ class InternalServerError extends CustomError {
 
 class HttpNotFound extends CustomError {
   /**
-   *
    * @param {string} message
    */
   constructor(message) {

@@ -1,8 +1,8 @@
-const { to } = require('await-to-js');
-const userSvc = require('../services/user');
+const { default: to } = require('await-to-js');
+const queueSvc = require('../services/queue.service');
 
 async function fetch(req, res) {
-  const [err, data] = await to(userSvc.fetch());
+  const [err, data] = await to(queueSvc.fetch());
   if (err) {
     res.status(err.status).send({ message: err.message, status: err.status });
   }
@@ -10,7 +10,7 @@ async function fetch(req, res) {
 }
 
 async function create(req, res) {
-  const [err, data] = await to(userSvc.create(req.body));
+  const [err, data] = await to(queueSvc.create(req.body));
   if (err) {
     res.status(err.status).send({ message: err.message, status: err.status });
   }

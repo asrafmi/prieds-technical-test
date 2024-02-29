@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const userCtrl = require('../controller/user');
-const queueCtrl = require('../controller/queue')
+const userCtrl = require('../controller/user.controller');
+const queueCtrl = require('../controller/queue.controller');
 // Users Routes
 router.get('/users', userCtrl.fetch);
 router.post('/users', userCtrl.create);
