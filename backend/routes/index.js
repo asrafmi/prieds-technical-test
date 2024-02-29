@@ -9,5 +9,6 @@ router.post('/users', userCtrl.create);
 // Queue Routes
 router.get('/queue', queueCtrl.fetch);
 router.post('/queue', queueCtrl.create);
+router.get('/queue/:id', queueCtrl.getOne);
 
 module.exports = router;

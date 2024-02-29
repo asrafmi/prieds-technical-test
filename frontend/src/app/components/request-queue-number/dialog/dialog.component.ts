@@ -1,8 +1,16 @@
 import { NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { QRCodeModule } from 'angularx-qrcode';
 import { DemoFlexyModule } from 'src/app/demo-flexy-module';
+import { DialogService } from './dialog.service';
+import { DialogData } from '../request-queue-number.component';
+
+export interface DialogDetailData {
+  queueNumber: string;
+  qrCode: string;
+  createdAt: string;
+}
 
 @Component({
   selector: 'app-dialog',
@@ -12,8 +20,19 @@ import { DemoFlexyModule } from 'src/app/demo-flexy-module';
   imports: [MatDialogModule, NgIf, DemoFlexyModule, QRCodeModule],
 })
 export class DialogComponent implements OnInit {
-  value = 'asraf123';
-  constructor() {}
+  dialogData = {} as DialogDetailData;
+  constructor(
+    private dialogSvc: DialogService,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
+  ) {}
 
-  ngOnInit(): void {}
+  parseRegisterDate(date: string): string {
+    return new Date(date).toLocaleString().replace(',', '').replace(' ', ' - ');
+  }
+
+  ngOnInit(): void {
+    this.dialogSvc.showQr(this.data._id).subscribe((res) => {
+      this.dialogData = res as DialogDetailData;
+    });
+  }
 }

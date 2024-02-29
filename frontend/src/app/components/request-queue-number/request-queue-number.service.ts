@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
-import { InputVisitorDetailsInterface } from './input-visitor-details.component';
+import { RequestQueueNumberInterface } from './request-queue-number.component';
 
 @Injectable({
   providedIn: 'root',
 })
-export class InputVisitorDetailsService {
+export class RequestQueueNumberService {
   constructor(private http: HttpClient) {}
 
-  addVisitor(body: InputVisitorDetailsInterface) {
-    return this.http.post(`${environment.backend_url}/api/users`, body);
+  addQueue(body: RequestQueueNumberInterface) {
+    return this.http.post(`${environment.backend_url}/api/queue`, body);
   }
 }

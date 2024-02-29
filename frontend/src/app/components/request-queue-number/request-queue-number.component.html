@@ -1,17 +1,42 @@
 <div class="card">
   <div class="card-body">
     <h4 class="mb-32">Cetak No. Antrian</h4>
-    <form>
+    <form [formGroup]="queueForm" (ngSubmit)="onSubmit()">
       <mat-form-field class="w-100 fs-16" appearance="outline">
         <mat-label>Nama Lengkap</mat-label>
-        <input matInput type="text" placeholder="Nama Lengkap" />
+        <input
+          matInput
+          formControlName="name"
+          type="text"
+          placeholder="Nama Lengkap"
+          required
+        />
       </mat-form-field>
 
-      <button
-        mat-button
-        class="btn btn-info fw-normal"
-        (click)="handleClick($event)"
-      >
+      <mat-form-field class="w-100 fs-16" appearance="outline">
+        <mat-label>No. HP</mat-label>
+        <input
+          matInput
+          formControlName="mobile"
+          type="text"
+          placeholder="Nama Lengkap"
+          required
+        />
+      </mat-form-field>
+
+      <div hidden>
+        <mat-form-field class="w-100 fs-16" appearance="outline">
+          <mat-label>QR Code</mat-label>
+          <input
+            matInput
+            formControlName="qrCode"
+            type="text"
+            placeholder="Nama Lengkap"
+          />
+        </mat-form-field>
+      </div>
+
+      <button mat-button class="btn btn-info fw-normal" type="submit">
         Submit
       </button>
     </form>

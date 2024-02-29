@@ -2,15 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
-import { InputVisitorDetailsInterface } from './input-visitor-details.component';
 
 @Injectable({
   providedIn: 'root',
 })
-export class InputVisitorDetailsService {
+export class DialogService {
   constructor(private http: HttpClient) {}
 
-  addVisitor(body: InputVisitorDetailsInterface) {
-    return this.http.post(`${environment.backend_url}/api/users`, body);
+  showQr(id: string) {
+    return this.http.get(`${environment.backend_url}/api/queue/${id}`);
   }
 }

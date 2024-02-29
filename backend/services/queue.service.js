@@ -34,7 +34,17 @@ async function create(body) {
   }
 }
 
+async function getOne(id) {
+  try {
+    const data = await Queue.findById(id);
+    return data;
+  } catch (error) {
+    throw new CustomError.MongoError(error.message);
+  }
+}
+
 module.exports = {
   create,
   fetch,
+  getOne,
 };

@@ -31,7 +31,6 @@ export class VisitorListComponent implements OnInit {
   }
   ngOnInit(): void {
     this.visitorListSvc.getVisitorList().subscribe((visitors) => {
-      console.log(visitors);
       this.visitorList = visitors.map((visitor, index) => ({
         ...visitor,
         id: index + 1,
