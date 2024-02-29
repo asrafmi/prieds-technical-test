@@ -3,13 +3,17 @@ const userSvc = require('../services/user');
 
 async function fetch(req, res) {
   const [err, data] = await to(userSvc.fetch());
+  if (err) {
+    res.status(err.status).send({ message: err.message, status: err.status });
+  }
   res.send(data);
-  if (err) throw res.send(err);
 }
 
 async function create(req, res) {
   const [err, data] = await to(userSvc.create(req.body));
-  if (err) throw res.send;
+  if (err) {
+    res.status(err.status).send({ message: err.message, status: err.status });
+  }
   res.send(data);
 }
 
