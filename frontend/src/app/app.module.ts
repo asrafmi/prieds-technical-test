@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FullComponent } from './layouts/full/full.component';
 import { DemoFlexyModule } from './demo-flexy-module';
+import { QRCodeModule } from 'angularx-qrcode';
 
 // Modules
 import { ComponentsModule } from './components/components.module';
@@ -23,6 +24,7 @@ import { ComponentsModule } from './components/components.module';
     DemoFlexyModule,
     ComponentsModule,
     FormsModule,
+    QRCodeModule
   ],
   providers: [],
   bootstrap: [AppComponent],
