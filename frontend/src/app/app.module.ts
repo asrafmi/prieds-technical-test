@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
 import { FormsModule } from '@angular/forms';
@@ -24,7 +25,8 @@ import { ComponentsModule } from './components/components.module';
     DemoFlexyModule,
     ComponentsModule,
     FormsModule,
-    QRCodeModule
+    QRCodeModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

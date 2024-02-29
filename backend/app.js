@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
 const connectDB = require('./config/dbConnect');
 const dotenv = require('dotenv').config();
 connectDB();
@@ -15,6 +16,11 @@ const app = express();
 const hostname = '127.0.0.1';
 const port = 3000;
 
+app.use(
+  cors({
+    origin: '*',
+  })
+);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

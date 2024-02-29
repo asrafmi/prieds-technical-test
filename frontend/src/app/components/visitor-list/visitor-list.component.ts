@@ -1,39 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { DemoFlexyModule } from 'src/app/demo-flexy-module';
+import { VisitorListService } from './visitor-list.service';
 
-export interface PeriodicElement {
+export interface VisitorListInterface {
   id: number;
   name: string;
   birthDate: string;
   registerTimestamp: string;
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    id: 1,
-    name: 'Deep Javiya',
-    birthDate: '22-02-2022',
-    registerTimestamp: '22-02-2023 - 15.00',
-  },
-  {
-    id: 2,
-    name: 'Nirav Joshi',
-    birthDate: '22-02-2022',
-    registerTimestamp: '22-02-2023 - 15.00',
-  },
-  {
-    id: 3,
-    name: 'Sunil Joshi',
-    birthDate: '22-02-2022',
-    registerTimestamp: '22-02-2023 - 15.00',
-  },
-  {
-    id: 4,
-    name: 'Maruti Makwana',
-    birthDate: '22-02-2022',
-    registerTimestamp: '22-02-2023 - 15.00',
-  },
-];
 
 @Component({
   selector: 'app-visitor-list',
@@ -44,9 +18,24 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class VisitorListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'birthDate', 'registerTimestamp'];
-  dataSource = ELEMENT_DATA;
+  visitorList: VisitorListInterface[] = [];
 
-  constructor() {}
+  constructor(private visitorListSvc: VisitorListService) {}
 
-  ngOnInit(): void {}
+  parseRegisterDate(date: string): string {
+    return new Date(date).toLocaleString().replace(',', '').replace(' ', ' - ');
+  }
+
+  parseBirthDate(date: string): string {
+    return new Date(date).toLocaleDateString();
+  }
+  ngOnInit(): void {
+    this.visitorListSvc.getVisitorList().subscribe((visitors) => {
+      console.log(visitors);
+      this.visitorList = visitors.map((visitor, index) => ({
+        ...visitor,
+        id: index + 1,
+      }));
+    });
+  }
 }
