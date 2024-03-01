@@ -1,0 +1,139 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Qustomer Queue Management",
+    "description": "Qustomer Queue Management API documentation lies here",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/api/users": {
+      "get": {
+        "summary": "Get All Users",
+        "tags": ["User"],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create User",
+        "tags": ["User"],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string",
+                  "format": "email"
+                },
+                "nik": {
+                  "type": "string"
+                },
+                "mobile": {
+                  "type": "string"
+                },
+                "birthdate": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "address": {
+                  "type": "string"
+                },
+                "gender": {
+                  "type": "string"
+                },
+                "diseaseHistory": {
+                  "type": "string"
+                },
+                "alergy": {
+                  "type": "string"
+                },
+                "complaint": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/queue": {
+      "get": {
+        "summary": "Get All queues",
+        "tags": ["Queue"],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Queue",
+        "tags": ["Queue"],
+        "parameters": [
+          {
+            "name": "produk",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "mobile": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/queue/{id}": {
+      "get": {
+        "summary": "Get One Queue.",
+        "tags": ["Queue"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

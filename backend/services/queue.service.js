@@ -12,7 +12,7 @@ async function fetch() {
 }
 
 async function create(body) {
-  const { mobile } = body;
+  let { mobile, name } = body;
   try {
     const findUser = await Queue.findOne({ mobile });
     if (findUser) {
@@ -21,10 +21,12 @@ async function create(body) {
 
     let queueNumber = (await Queue.countDocuments()) + 1;
     queueNumber = `A - ${queueNumber.toString().padStart(3, '0')}`;
+    const qrCode = `${name}-${mobile}`;
 
     const object = {
       ...body,
       queueNumber,
+      qrCode,
     };
 
     const data = await Queue.create({ ...object });
@@ -37,9 +39,13 @@ async function create(body) {
 async function getOne(id) {
   try {
     const data = await Queue.findById(id);
+    console.log('data', data);
+    if (!data) {
+      throw new CustomError.HttpNotFound('Queue not found!');
+    }
     return data;
   } catch (error) {
-    throw new CustomError.MongoError(error.message);
+    throw error.status ? error : new CustomError.MongoError(error.message);
   }
 }
 

@@ -4,6 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./docs/swagger.json');
 const connectDB = require('./config/dbConnect');
 const dotenv = require('dotenv').config();
 connectDB();
@@ -33,6 +35,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', indexRouter);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // catch 404 and error handler
 app.use(notFound);

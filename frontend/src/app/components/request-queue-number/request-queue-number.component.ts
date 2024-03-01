@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MaterialModule } from 'src/app/tools/material.module';
 import { DialogComponent } from './dialog/dialog.component';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { RequestQueueNumberService } from './request-queue-number.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -39,21 +44,20 @@ export class RequestQueueNumberComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    const obj = {
-      ...this.queueForm.value,
-      qrCode: `${this.queueForm.value.name}-${this.queueForm.value.mobile}`,
-    };
     this.requestQueueNumberSvc
-      .addQueue(obj as RequestQueueNumberInterface)
-      .subscribe((res: any) => {
-        this.toastr.success('Queue number added!', 'Success');
-        this.dialog.open(DialogComponent, {
-          data: {
-            _id: res._id as any,
-          },
-        });
-      }, (err) => {
-        this.toastr.error(err.error.message, 'Error');
-      });
+      .addQueue(this.queueForm.value as RequestQueueNumberInterface)
+      .subscribe(
+        (res: any) => {
+          this.toastr.success('Queue number added!', 'Success');
+          this.dialog.open(DialogComponent, {
+            data: {
+              _id: res._id as any,
+            },
+          });
+        },
+        (err) => {
+          this.toastr.error(err.error.message, 'Error');
+        }
+      );
   }
 }
