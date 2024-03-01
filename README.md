@@ -1,8 +1,9 @@
 # prieds-technical-test
 
 ## Prerequisites
-- NodeJS v18+
-- Angular V16+
+- NodeJS v18.13+
+- Angular CLI V17.2+
+- yarn 1.22.19+
 
 ## How to Run the Project
 - You need to run both, frontend and backend
