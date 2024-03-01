@@ -6,7 +6,7 @@ async function fetch() {
     const data = await User.find({});
     return data;
   } catch (error) {
-    throw CustomError.MongoError(error.message);
+    throw new CustomError.MongoError(error.message);
   }
 }
 

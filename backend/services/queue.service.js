@@ -39,7 +39,6 @@ async function create(body) {
 async function getOne(id) {
   try {
     const data = await Queue.findById(id);
-    console.log('data', data);
     if (!data) {
       throw new CustomError.HttpNotFound('Queue not found!');
     }
