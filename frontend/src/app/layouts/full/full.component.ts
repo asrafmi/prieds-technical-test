@@ -12,41 +12,40 @@ interface sidebarMenu {
 @Component({
   selector: 'app-full',
   templateUrl: './full.component.html',
-  styleUrls: ['./full.component.scss']
+  styleUrls: ['./full.component.scss'],
 })
 export class FullComponent {
-
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
     .pipe(
-      map(result => result.matches),
+      map((result) => result.matches),
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(private breakpointObserver: BreakpointObserver) {}
 
-  routerActive: string = "activelink";
+  routerActive: string = 'activelink';
 
   sidebarMenu: sidebarMenu[] = [
     {
-      link: "/home",
-      icon: "home",
-      menu: "Dashboard",
+      link: '/home',
+      icon: 'home',
+      menu: 'Dashboard',
     },
     {
-      link: "/input-visitor-details",
-      icon: "file-text",
-      menu: "Input Visitor Details",
+      link: '/request-queue-number',
+      icon: 'loader',
+      menu: 'Request Queue Number',
     },
     {
-      link: "/request-queue-number",
-      icon: "loader",
-      menu: "Request Queue Number",
+      link: '/input-visitor-details',
+      icon: 'file-text',
+      menu: 'Input Visitor Details',
     },
     {
-      link: "/visitor-list",
-      icon: "list",
-      menu: "Visitor List",
+      link: '/visitor-list',
+      icon: 'list',
+      menu: 'Visitor List',
     },
-  ]
-
+  ];
 }
