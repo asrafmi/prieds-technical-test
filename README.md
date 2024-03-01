@@ -4,6 +4,11 @@
 - NodeJS v18.13+
 - Angular CLI V17.2+
 - yarn 1.22.19+
+- Mongo DB V7+
+
+## Prepare Database
+- Create Database named 'customer-queue-management' on your Mongo DB
+- Create 2 collections named 'users' and 'queues'
 
 ## How to Run the Project
 - You need to run both, frontend and backend
