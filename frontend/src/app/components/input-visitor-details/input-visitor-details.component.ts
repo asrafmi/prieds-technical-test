@@ -1,11 +1,11 @@
 import { NgIf } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   FormsModule,
-  NgForm,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { Router } from '@angular/router';
 import { InputVisitorDetailsService } from './input-visitor-details.service';
+import { ToastrService } from 'ngx-toastr';
 
 export interface InputVisitorDetailsInterface {
   name: string;
@@ -53,20 +54,24 @@ export class InputVisitorDetailsComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private inputVisitorDetailsSvc: InputVisitorDetailsService
+    private inputVisitorDetailsSvc: InputVisitorDetailsService,
+    private toastr: ToastrService
   ) {}
 
   visitorForm = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    mobile: new FormControl(''),
-    gender: new FormControl(''),
-    nik: new FormControl(''),
-    birthdate: new FormControl(''),
-    address: new FormControl(''),
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    mobile: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^((\\+62-?)|0)?[0-9]{10,}$'),
+    ]),
+    gender: new FormControl('', Validators.required),
+    nik: new FormControl('', Validators.required),
+    birthdate: new FormControl('', Validators.required),
+    address: new FormControl('', Validators.required),
     diseaseHistory: new FormControl(''),
     alergy: new FormControl(''),
-    complaint: new FormControl(''),
+    complaint: new FormControl('', Validators.required),
   });
 
   ngOnInit(): void {}
@@ -74,8 +79,18 @@ export class InputVisitorDetailsComponent implements OnInit {
   onSubmit(): void {
     this.inputVisitorDetailsSvc
       .addVisitor(this.visitorForm.value as InputVisitorDetailsInterface)
-      .subscribe((res) => {
-        this._router.navigate(['/visitor-list']);
-      });
+      .subscribe(
+        (res) => {
+          this.toastr.success('Visitor added successfully', 'Success');
+          setTimeout(() => {
+            this._router.navigate(['/visitor-list']);
+          }, 2000);
+        },
+        (err) => {
+          if (err.status === 409) {
+            this.toastr.error('Email already exist', 'Error');
+          }
+        }
+      );
   }
 }

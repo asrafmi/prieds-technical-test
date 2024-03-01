@@ -36,7 +36,7 @@
         </mat-form-field>
       </div>
 
-      <button mat-button class="btn btn-info fw-normal" type="submit">
+      <button mat-button class="btn btn-info fw-normal" type="submit" [disabled]="!queueForm.valid">
         Submit
       </button>
     </form>

@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MaterialModule } from 'src/app/tools/material.module';
 import { DialogComponent } from './dialog/dialog.component';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RequestQueueNumberService } from './request-queue-number.service';
+import { ToastrService } from 'ngx-toastr';
 
 export interface RequestQueueNumberInterface {
   name: string;
@@ -25,12 +26,13 @@ export interface DialogData {
 export class RequestQueueNumberComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
-    private requestQueueNumberSvc: RequestQueueNumberService
+    private requestQueueNumberSvc: RequestQueueNumberService,
+    private toastr: ToastrService
   ) {}
 
   queueForm = new FormGroup({
-    name: new FormControl(''),
-    mobile: new FormControl(''),
+    name: new FormControl('', Validators.required),
+    mobile: new FormControl('', Validators.required),
     qrCode: new FormControl(''),
   });
 
@@ -44,11 +46,14 @@ export class RequestQueueNumberComponent implements OnInit {
     this.requestQueueNumberSvc
       .addQueue(obj as RequestQueueNumberInterface)
       .subscribe((res: any) => {
+        this.toastr.success('Queue number added!', 'Success');
         this.dialog.open(DialogComponent, {
           data: {
             _id: res._id as any,
           },
         });
+      }, (err) => {
+        this.toastr.error(err.error.message, 'Error');
       });
   }
 }

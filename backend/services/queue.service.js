@@ -22,7 +22,7 @@ async function create(body) {
     let queueNumber = (await Queue.countDocuments()) + 1;
     queueNumber = `A - ${queueNumber.toString().padStart(3, '0')}`;
 
-    let object = {
+    const object = {
       ...body,
       queueNumber,
     };

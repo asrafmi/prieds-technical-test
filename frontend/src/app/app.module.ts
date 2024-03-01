@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FullComponent } from './layouts/full/full.component';
 import { MaterialModule } from './tools/material.module';
 import { QRCodeModule } from 'angularx-qrcode';
+import { ToastrModule } from 'ngx-toastr';
 
 // Modules
 import { ComponentsModule } from './components/components.module';
@@ -27,6 +28,7 @@ import { ComponentsModule } from './components/components.module';
     FormsModule,
     QRCodeModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
